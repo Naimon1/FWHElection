@@ -1,4 +1,4 @@
-# Sir Frank Worrell Hall — Elections 2025–2026
+# Sir Frank Worrell Hall — Elections 2026
 
 Official election website for the Sir Frank Worrell Hall Student Council at the University of the West Indies. Hosted on GitHub Pages with Google Sheets as a live CMS for candidate data.
 
@@ -67,7 +67,7 @@ The website pulls candidate information, important dates, FAQ, and Council 101 e
 ### Step 1: Create the Google Spreadsheet
 
 1. Go to [Google Sheets](https://sheets.google.com) and create a new spreadsheet.
-2. Name it something like **FWH Elections 2025–2026 Data**.
+2. Name it something like **FWH Elections 2026 Data**.
 3. Create **4 tabs** (sheets) at the bottom with these exact names:
    - `Candidates`
    - `Council101`
