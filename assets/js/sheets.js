@@ -174,10 +174,10 @@ const DEMO_DATES = [
 
 const DEMO_FAQ = [
   { Question:'Who can vote?', Answer:'All registered residents of Sir Frank Worrell Hall who are current UWI students in good standing are eligible to vote.' },
-  { Question:'How do I vote?', Answer:'Voting takes place electronically via the link distributed by the Electoral Commission on Election Day. You will need your student ID to authenticate.' },
+  { Question:'How do I vote?', Answer:'Voting takes place electronically via the link distributed by the Electoral Committee on Election Day. You will need your student ID to authenticate.' },
   { Question:'What are the eligibility requirements for candidates?', Answer:'Candidates must be registered residents of the Hall, must be in good academic standing, and must submit a completed nomination form during the nomination period.' },
-  { Question:'What happens in the event of a tie?', Answer:'In the event of a tie, the Electoral Commission will conduct a run-off vote between the tied candidates within three business days.' },
-  { Question:'Can I campaign for a candidate?', Answer:'Yes. Residents may support candidates, but all campaigning must comply with the guidelines set by the Electoral Commission and the Hall Constitution.' },
+  { Question:'What happens in the event of a tie?', Answer:'In the event of a tie, the Electoral Committee will conduct a run-off vote between the tied candidates within three business days.' },
+  { Question:'Can I campaign for a candidate?', Answer:'Yes. Residents may support candidates, but all campaigning must comply with the guidelines set by the Electoral Committee and the Hall Constitution.' },
 ];
 
 export {

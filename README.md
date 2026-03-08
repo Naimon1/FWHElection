@@ -248,4 +248,4 @@ FWHElection/
 
 ---
 
-*Maintained by the Sir Frank Worrell Hall Electoral Commission.*
+*Maintained by the Sir Frank Worrell Hall Electoral Committee.*
