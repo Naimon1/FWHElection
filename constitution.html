@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Read or download the Sir Frank Worrell Hall Constitution (Amended November 2022). Covers preamble, executive roles, election procedures, and amendments." />
+  <title>Hall Constitution | FWH Elections 2025–2026</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/fwhLogo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+    h1,h2,h3 { font-family: 'Playfair Display', Georgia, serif; }
+    [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    [data-reveal].revealed { opacity: 1; transform: none; }
+    #backToTop {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+      width: 44px; height: 44px;
+      background: var(--maroon); color: var(--text);
+      border: none; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    #backToTop:hover { transform: translateY(-3px); }
+
+    /* Highlight election-related TOC items */
+    .toc-highlight a {
+      color: var(--gold) !important;
+      font-weight: 600;
+    }
+    .toc-highlight a::after { content: ' ⚡'; font-size: 0.75rem; }
+
+    .constitution-intro {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2.5rem 0 0;
+    }
+    .constitution-intro p { font-size: 0.975rem; margin-bottom: 0.75rem; }
+
+    /* PDF.js viewer */
+    #pdf-viewer {
+      background: var(--black-mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    #pdf-controls {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; flex-wrap: wrap;
+      padding: 0.85rem 1.25rem;
+      background: var(--black-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    #pdf-controls button {
+      padding: 0.4rem 1rem; border-radius: var(--radius);
+      background: var(--maroon); color: var(--text);
+      border: none; cursor: pointer; font-size: 0.875rem; font-weight: 600;
+      transition: background var(--transition);
+    }
+    #pdf-controls button:hover:not(:disabled) { background: var(--maroon-light); }
+    #pdf-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+    #pdf-page-info { font-size: 0.875rem; color: var(--text-muted); min-width: 100px; text-align: center; }
+    #pdf-zoom-select {
+      background: var(--black-mid); color: var(--text);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 0.35rem 0.6rem; font-size: 0.85rem; cursor: pointer;
+    }
+    #pdf-canvas-container {
+      overflow-y: auto; max-height: 78vh;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 1.25rem; gap: 1rem;
+      background: #3a3a3a;
+    }
+    #pdf-canvas-container canvas {
+      display: block;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      max-width: 100%;
+    }
+    #pdf-loading {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1rem; padding: 4rem; color: var(--text-muted);
+    }
+    #pdf-error {
+      display: none; padding: 2.5rem; text-align: center;
+      color: var(--text-muted);
+    }
+    #pdf-error a { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- =================== NAVBAR =================== -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="FWH Elections Home">
+        <img src="assets/images/fwhLogo.jpg" alt="Frank Worrell Hall Logo" />
+        <div class="nav-logo-text">
+          <span class="site-title">FWH Elections</span>
+          <span class="site-sub">2025 – 2026</span>
+        </div>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown">
+          <button class="nav-btn" aria-haspopup="true" aria-expanded="false">
+            Campaign Material <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="menuitem"><a href="candidates.html#deputy-hall-chairperson">Deputy Hall Chairperson</a></li>
+            <li role="menuitem"><a href="candidates.html#treasurer">Treasurer</a></li>
+            <li role="menuitem"><a href="candidates.html#secretary">Secretary</a></li>
+            <li role="menuitem"><a href="candidates.html#public-relation-officer">Public Relation Officer</a></li>
+            <li role="menuitem"><a href="candidates.html#welfare-officer">Welfare Officer</a></li>
+            <li role="menuitem"><a href="candidates.html#cultural-and-entertainment-activities-chairperson-ceac">CEAC</a></li>
+            <li role="menuitem"><a href="candidates.html#maintenance-representation">Maintenance Representation</a></li>
+            <li role="menuitem"><a href="candidates.html#constitutional-chairperson">Constitutional Chairperson</a></li>
+            <li role="menuitem"><a href="candidates.html#sports-and-games-chairperson">Sports &amp; Games Chairperson</a></li>
+            <li role="menuitem" style="border-top:1px solid var(--border);margin-top:0.25rem;padding-top:0.25rem">
+              <a href="candidates.html" style="color:var(--gold);font-weight:600">View All Candidates →</a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="council-101.html">Council 101</a></li>
+        <li><a href="constitution.html" class="active">Constitution</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =================== PAGE BANNER =================== -->
+  <header class="page-banner">
+    <div class="container">
+      <p class="page-eyebrow">Governing Document</p>
+      <h1>Hall Constitution</h1>
+      <p>The official constitution of Sir Frank Worrell Hall, as amended in November 2022. All election procedures are governed by this document.</p>
+    </div>
+  </header>
+
+  <!-- =================== INTRO =================== -->
+  <div class="container">
+    <div class="constitution-intro" data-reveal>
+      <p>The Hall Constitution is the foundational document that governs all aspects of student council operations, elections, and resident rights at Sir Frank Worrell Hall. Every resident is encouraged to read the sections relevant to the election process.</p>
+      <p style="color:var(--gold);font-size:0.875rem">⚡ Sections highlighted in the table of contents are especially relevant to the election process.</p>
+    </div>
+  </div>
+
+  <!-- =================== MAIN LAYOUT =================== -->
+  <main class="section" aria-label="Constitution document viewer">
+    <div class="constitution-layout" data-reveal>
+
+      <!-- Sidebar TOC -->
+      <aside aria-label="Table of contents">
+        <div class="constitution-sidebar">
+          <h3>Contents</h3>
+          <ul class="toc-nav" role="list">
+            <li><a href="#pdf-viewer">📄 Full Document</a></li>
+            <li style="border-top:1px solid var(--border);padding-top:0.25rem;margin-top:0.25rem">
+              <span style="padding:0.65rem 1.1rem;display:block;font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em">Sections</span>
+            </li>
+            <li><a href="#sec-preamble">Preamble</a></li>
+            <li><a href="#sec-roles">Executive Roles</a></li>
+            <li class="toc-highlight"><a href="#sec-elections">Election Procedures</a></li>
+            <li class="toc-highlight"><a href="#sec-eligibility">Eligibility &amp; Voting</a></li>
+            <li><a href="#sec-amendments">Amendments</a></li>
+            <li style="border-top:1px solid var(--border);padding-top:0.5rem;margin-top:0.25rem">
+              <a href="assets/docs/constitution.pdf" download class="btn btn-gold btn-sm" style="margin:0.5rem 1rem;display:inline-flex">
+                ⬇ Download PDF
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Constitution main viewer -->
+      <div class="constitution-main">
+
+        <!-- Toolbar -->
+        <div class="constitution-toolbar">
+          <div>
+            <h3 style="font-size:1rem;margin-bottom:0.15rem">FWH Constitution (Amended November 2022)</h3>
+            <p style="font-size:0.8rem;color:var(--text-muted);margin:0">Sir Frank Worrell Hall, The University of the West Indies</p>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+            <a href="assets/docs/constitution.pdf" download class="btn btn-gold btn-sm">
+              ⬇ Download PDF
+            </a>
+            <a href="assets/docs/constitution.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              ↗ Open in New Tab
+            </a>
+          </div>
+        </div>
+
+        <!-- PDF Viewer (PDF.js powered) -->
+        <div id="pdf-viewer" aria-label="Hall Constitution document viewer">
+          <div id="pdf-controls">
+            <button id="pdf-prev" aria-label="Previous page" disabled>◀ Prev</button>
+            <span id="pdf-page-info">Loading…</span>
+            <button id="pdf-next" aria-label="Next page" disabled>Next ▶</button>
+            <select id="pdf-zoom-select" aria-label="Zoom level" title="Zoom">
+              <option value="0.75">75%</option>
+              <option value="1.0" selected>100%</option>
+              <option value="1.25">125%</option>
+              <option value="1.5">150%</option>
+              <option value="1.75">175%</option>
+              <option value="2.0">200%</option>
+            </select>
+          </div>
+          <div id="pdf-canvas-container">
+            <div id="pdf-loading">
+              <div class="spinner"></div>
+              <p>Loading document…</p>
+            </div>
+            <div id="pdf-error">
+              <p style="font-size:1.5rem;margin-bottom:0.5rem">📄</p>
+              <p>Could not render the document inline.</p>
+              <p style="margin-top:0.75rem">
+                <a href="assets/docs/constitution.pdf" download class="btn btn-gold btn-sm">⬇ Download PDF</a>
+                &nbsp;
+                <a href="assets/docs/constitution.pdf" target="_blank" rel="noopener" class="btn btn-outline btn-sm">↗ Open in New Tab</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section summary cards -->
+        <div style="margin-top:3rem">
+          <h2 style="margin-bottom:1.5rem;font-size:1.5rem">Section Summaries</h2>
+          <p style="color:var(--text-muted);margin-bottom:2rem;font-size:0.9rem">
+            These summaries highlight the key sections of the constitution. Refer to the full document above for authoritative text.
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem">
+
+            <div class="card" id="sec-preamble">
+              <div class="card-body">
+                <div style="font-size:1.5rem;margin-bottom:0.5rem">📜</div>
+                <div class="card-title">Preamble</div>
+                <p class="card-text">States the founding principles of the Hall's student governance structure, including the commitment to democratic representation and the welfare of all residents.</p>
+              </div>
+            </div>
+
+            <div class="card" id="sec-roles">
+              <div class="card-body">
+                <div style="font-size:1.5rem;margin-bottom:0.5rem">🏛️</div>
+                <div class="card-title">Executive Roles</div>
+                <p class="card-text">Defines the duties of all nine council positions — from the Deputy Hall Chairperson to the Sports &amp; Games Chairperson — including their term of office and responsibilities.</p>
+              </div>
+            </div>
+
+            <div class="card" id="sec-elections" style="border-color:rgba(207,181,59,0.35)">
+              <div class="card-body">
+                <div style="font-size:1.5rem;margin-bottom:0.5rem">⚡</div>
+                <div class="card-title" style="color:var(--gold)">Election Procedures</div>
+                <p class="card-text">Covers the full election cycle: nomination requirements, campaign conduct rules, voting procedures, result declaration, and dispute resolution mechanisms.</p>
+              </div>
+            </div>
+
+            <div class="card" id="sec-eligibility" style="border-color:rgba(207,181,59,0.35)">
+              <div class="card-body">
+                <div style="font-size:1.5rem;margin-bottom:0.5rem">⚡</div>
+                <div class="card-title" style="color:var(--gold)">Eligibility &amp; Voting Rights</div>
+                <p class="card-text">Specifies who is eligible to vote, who may stand as a candidate, residency requirements, and the rules governing the Electoral Commission's conduct.</p>
+              </div>
+            </div>
+
+            <div class="card" id="sec-amendments">
+              <div class="card-body">
+                <div style="font-size:1.5rem;margin-bottom:0.5rem">✏️</div>
+                <div class="card-title">Amendments</div>
+                <p class="card-text">Details the process by which the constitution may be amended, including quorum requirements and the ratification process. This version reflects amendments made in November 2022.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="assets/images/fwhLogo.jpg" alt="FWH Logo" />
+            <span style="color:var(--gold);font-weight:700;font-size:0.95rem">FWH Elections</span>
+          </div>
+          <p>Official election portal for Sir Frank Worrell Hall, The University of the West Indies.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <a href="index.html">Home</a>
+          <a href="candidates.html">Candidates</a>
+          <a href="council-101.html">Council 101</a>
+          <a href="constitution.html">Constitution</a>
+        </div>
+        <div class="footer-col">
+          <h4>Constitution Sections</h4>
+          <a href="#sec-preamble">Preamble</a>
+          <a href="#sec-roles">Executive Roles</a>
+          <a href="#sec-elections">Election Procedures</a>
+          <a href="#sec-eligibility">Eligibility &amp; Voting</a>
+          <a href="#sec-amendments">Amendments</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="assets/docs/constitution.pdf" target="_blank" rel="noopener">Download Constitution</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#feedback">Submit Feedback</a>
+          <a href="index.html#important-dates">Important Dates</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025–2026 Sir Frank Worrell Hall Electoral Commission, UWI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+  <!-- PDF.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs" type="module"></script>
+  <script type="module">
+    import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs';
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.mjs';
+
+    const PDF_URL = 'assets/docs/constitution.pdf';
+
+    const container   = document.getElementById('pdf-canvas-container');
+    const loading     = document.getElementById('pdf-loading');
+    const errorDiv    = document.getElementById('pdf-error');
+    const pageInfo    = document.getElementById('pdf-page-info');
+    const prevBtn     = document.getElementById('pdf-prev');
+    const nextBtn     = document.getElementById('pdf-next');
+    const zoomSelect  = document.getElementById('pdf-zoom-select');
+
+    let pdfDoc   = null;
+    let currentPage = 1;
+    let scale = parseFloat(zoomSelect.value);
+    let rendering = false;
+
+    async function renderPage(num) {
+      if (rendering) return;
+      rendering = true;
+
+      // Remove existing canvases
+      container.querySelectorAll('canvas').forEach(c => c.remove());
+
+      const page = await pdfDoc.getPage(num);
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement('canvas');
+      canvas.width  = viewport.width;
+      canvas.height = viewport.height;
+      canvas.setAttribute('aria-label', `Page ${num} of ${pdfDoc.numPages}`);
+      container.appendChild(canvas);
+
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+
+      pageInfo.textContent = `Page ${num} of ${pdfDoc.numPages}`;
+      prevBtn.disabled = num <= 1;
+      nextBtn.disabled = num >= pdfDoc.numPages;
+      rendering = false;
+
+      // Scroll canvas container to top on page change
+      container.scrollTop = 0;
+    }
+
+    async function loadPDF() {
+      try {
+        const loadingTask = pdfjsLib.getDocument(PDF_URL);
+        pdfDoc = await loadingTask.promise;
+        loading.style.display = 'none';
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
+        await renderPage(currentPage);
+      } catch (err) {
+        console.error('PDF.js error:', err);
+        loading.style.display = 'none';
+        errorDiv.style.display = 'block';
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) { currentPage--; renderPage(currentPage); }
+    });
+    nextBtn.addEventListener('click', () => {
+      if (pdfDoc && currentPage < pdfDoc.numPages) { currentPage++; renderPage(currentPage); }
+    });
+    zoomSelect.addEventListener('change', () => {
+      scale = parseFloat(zoomSelect.value);
+      if (pdfDoc) renderPage(currentPage);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextBtn.click();
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevBtn.click();
+    });
+
+    loadPDF();
+  </script>
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

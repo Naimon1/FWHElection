@@ -1,0 +1,160 @@
+WEBSITE OUTLINE
+Candidates Central Database – Sir Frank Worrell Hall Elections
+
+1️⃣ HOME PAGE
+🔹 Banner/Header
+Full-width banner featuring:
+
+Frank Worrell Hall logo or
+
+Image of the current Hall Council (clean, professional group photo)
+
+Title overlay:
+“Sir Frank Worrell Hall Elections 2025–2026”
+
+Optional tagline:
+Transparency. Leadership. Representation.
+
+🔹 Welcome Section
+Short paragraph explaining:
+
+Purpose of the site
+
+How residents can use it
+
+Encouragement to review campaign materials before voting
+
+🔹 Quick Navigation Buttons (Optional but recommended)
+View Candidates
+
+Council 101 Series
+
+Hall Constitution
+
+2️⃣ NAVIGATION BAR (Top Menu with Drop-Downs)
+🔽 Campaign Material (Main Drop-Down)
+Under this tab:
+
+➤ Positions 
+The Positions:
+
+
+Deputy Hall Chairperson
+
+Treasurer
+
+Secretary
+
+Public Relation Officer
+
+Welfare Officer
+
+Cultural and Entertainment Activities Chairperson (CEAC)
+
+Maintenance Representation
+
+Constitutional Chairperson
+
+Sports and Games Chairperson
+
+
+Inside Each Position Page
+Structure:
+
+🏷 Position Title at Top
+Example:
+Deputy Hall Chairperson – Candidates
+
+For Each Candidate (Structured Profile Card Layout)
+Each candidate should have:
+
+📸 Headshot (professional, uniform size across candidates)
+
+👤 Full Name
+
+📄 Campaign Manifesto (PDF download or embedded viewer)
+
+🎥 Campaign Video (embedded)
+
+📢 Key Points / Platform Summary (bullet format)
+
+📬 Optional contact/social links (if approved)
+
+⚠️ Important Design Note:
+
+Keep layout identical for all candidates to ensure fairness.
+
+Alphabetical order by surname (recommended for neutrality).
+
+3️⃣ COUNCIL 101 SERIES (Separate Navigation Tab)
+This should be its own section in the navigation menu.
+
+Layout:
+Short intro explaining the purpose of the series
+
+Organized by episode/topic
+
+Each entry includes:
+
+Title (e.g., “Role of the Deputy Hall Chairperson”)
+
+Short description
+
+Embedded video
+
+Optional summary bullet points
+
+This adds educational transparency to the election process.
+
+4️⃣ HALL CONSTITUTION (Separate Navigation Tab)
+Layout:
+Clean document viewer or downloadable PDF
+
+Sectioned by:
+
+Preamble
+
+Executive Roles
+
+Election Procedures
+
+Amendments
+
+Search function (if possible)
+
+Highlight relevant election clauses (optional)
+
+5️⃣ OPTIONAL BUT STRONGLY RECOMMENDED ADDITIONS
+🔹 Important Dates Section
+Nomination Period
+
+Campaign Period
+
+Debate Night
+
+Election Day
+
+🔹 FAQ Section
+Who can vote?
+
+How to vote?
+
+Eligibility requirements?
+
+What happens if there’s a tie?
+
+🔹 Suggestion / Feedback Box
+Optional anonymous submission form.
+
+🎨 DESIGN GUIDELINES
+Clean, neutral color scheme (hall colors)
+
+Mobile responsive
+
+Minimal clutter
+
+Equal visibility for all candidates
+
+Easy PDF and video embedding
+
+Simple navigation (max 3 clicks to reach any candidate)

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse all candidates running for the 2025–2026 Sir Frank Worrell Hall Student Council. View manifestos, campaign videos, and platform summaries." />
+  <title>Candidates | FWH Elections 2025–2026</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/fwhLogo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+    h1,h2,h3 { font-family: 'Playfair Display', Georgia, serif; }
+    [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    [data-reveal].revealed { opacity: 1; transform: none; }
+    #backToTop {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+      width: 44px; height: 44px;
+      background: var(--maroon); color: var(--text);
+      border: none; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    #backToTop:hover { transform: translateY(-3px); background: var(--maroon-light); }
+  </style>
+</head>
+<body>
+
+  <!-- =================== NAVBAR =================== -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="FWH Elections Home">
+        <img src="assets/images/fwhLogo.jpg" alt="Frank Worrell Hall Logo" />
+        <div class="nav-logo-text">
+          <span class="site-title">FWH Elections</span>
+          <span class="site-sub">2025 – 2026</span>
+        </div>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown">
+          <button class="nav-btn active" aria-haspopup="true" aria-expanded="false">
+            Campaign Material <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="menuitem"><a href="#deputy-hall-chairperson">Deputy Hall Chairperson</a></li>
+            <li role="menuitem"><a href="#treasurer">Treasurer</a></li>
+            <li role="menuitem"><a href="#secretary">Secretary</a></li>
+            <li role="menuitem"><a href="#public-relation-officer">Public Relation Officer</a></li>
+            <li role="menuitem"><a href="#welfare-officer">Welfare Officer</a></li>
+            <li role="menuitem"><a href="#cultural-and-entertainment-activities-chairperson-ceac">CEAC</a></li>
+            <li role="menuitem"><a href="#maintenance-representation">Maintenance Representation</a></li>
+            <li role="menuitem"><a href="#constitutional-chairperson">Constitutional Chairperson</a></li>
+            <li role="menuitem"><a href="#sports-and-games-chairperson">Sports &amp; Games Chairperson</a></li>
+          </ul>
+        </li>
+        <li><a href="council-101.html">Council 101</a></li>
+        <li><a href="constitution.html">Constitution</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =================== PAGE BANNER =================== -->
+  <header class="page-banner">
+    <div class="container">
+      <p class="page-eyebrow">Campaign Material</p>
+      <h1>Candidates 2025–2026</h1>
+      <p>All candidates are displayed in uniform format, sorted alphabetically by surname within each position, to ensure fair and equal representation.</p>
+    </div>
+  </header>
+
+  <!-- =================== FAIRNESS NOTICE =================== -->
+  <div class="container" style="margin-top:2rem">
+    <div class="alert alert-gold">
+      <span class="alert-icon">⚖️</span>
+      <span>All candidate profiles are presented in identical format. Campaign materials are provided directly by candidates and have not been edited by the Electoral Commission. Candidate order within each position is alphabetical by surname.</span>
+    </div>
+  </div>
+
+  <!-- =================== MAIN LAYOUT =================== -->
+  <main style="padding: 2rem 0 5rem;" aria-label="Candidates by position">
+    <div class="positions-layout">
+
+      <!-- Sidebar -->
+      <aside aria-label="Positions navigation">
+        <div class="positions-sidebar">
+          <h3>Positions</h3>
+          <ul class="sidebar-nav" id="positions-sidebar-nav" role="list">
+            <li><a href="#deputy-hall-chairperson">🏛️ Deputy Hall Chairperson</a></li>
+            <li><a href="#treasurer">💰 Treasurer</a></li>
+            <li><a href="#secretary">📋 Secretary</a></li>
+            <li><a href="#public-relation-officer">📢 Public Relation Officer</a></li>
+            <li><a href="#welfare-officer">🤝 Welfare Officer</a></li>
+            <li><a href="#cultural-and-entertainment-activities-chairperson-ceac">🎭 CEAC</a></li>
+            <li><a href="#maintenance-representation">🔧 Maintenance Rep.</a></li>
+            <li><a href="#constitutional-chairperson">⚖️ Constitutional Chair</a></li>
+            <li><a href="#sports-and-games-chairperson">🏆 Sports &amp; Games</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Dynamic candidate sections -->
+      <div id="candidates-main" aria-live="polite">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Loading candidates…</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="assets/images/fwhLogo.jpg" alt="FWH Logo" />
+            <span style="color:var(--gold);font-weight:700;font-size:0.95rem">FWH Elections</span>
+          </div>
+          <p>Official election portal for Sir Frank Worrell Hall, The University of the West Indies.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <a href="index.html">Home</a>
+          <a href="candidates.html">Candidates</a>
+          <a href="council-101.html">Council 101</a>
+          <a href="constitution.html">Constitution</a>
+        </div>
+        <div class="footer-col">
+          <h4>Positions</h4>
+          <a href="#deputy-hall-chairperson">Deputy Hall Chairperson</a>
+          <a href="#treasurer">Treasurer</a>
+          <a href="#secretary">Secretary</a>
+          <a href="#welfare-officer">Welfare Officer</a>
+          <a href="#sports-and-games-chairperson">Sports &amp; Games</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="assets/docs/constitution.pdf" target="_blank" rel="noopener">Download Constitution</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#feedback">Submit Feedback</a>
+          <a href="index.html#important-dates">Important Dates</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025–2026 Sir Frank Worrell Hall Electoral Commission, UWI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+  <script type="module" src="assets/js/candidates.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
