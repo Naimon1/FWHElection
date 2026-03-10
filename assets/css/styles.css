@@ -490,6 +490,30 @@ p  { color: var(--text-muted); }
 }
 .candidate-social a:hover { background: var(--maroon); color: var(--text); }
 
+/* Manifesto Text Accordion */
+.manifesto-details {
+  margin-top: 0.5rem;
+}
+.manifesto-details summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+}
+.manifesto-details summary::-webkit-details-marker {
+  display: none;
+}
+.manifesto-text-content {
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background: var(--black-mid);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+  border-left: 3px solid var(--maroon);
+}
+
 /* Empty state */
 .empty-state {
   text-align: center; padding: 3rem 1.5rem;

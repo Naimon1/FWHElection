@@ -136,6 +136,7 @@ function buildCandidateCard(c, pos) {
   const photoUrl = toDriveImage(c.PhotoURL);
   const pdfUrl   = toDrivePDF(c.ManifestoURL);
   const videoUrl = toYouTubeEmbed(c.VideoURL);
+  const manifestoText = c.ManifestoText || '';
 
   const keyPoints = [c.KeyPoint1, c.KeyPoint2, c.KeyPoint3].filter(Boolean);
 
@@ -162,8 +163,14 @@ function buildCandidateCard(c, pos) {
         ${pdfUrl ? `
           <a href="${escHtml(pdfUrl)}" target="_blank" rel="noopener noreferrer"
              class="btn btn-maroon btn-sm">
-            📄 View Manifesto
+            📄 View PDF Manifesto
           </a>` : ''}
+          
+        ${manifestoText ? `
+          <details class="manifesto-details">
+            <summary class="btn btn-maroon btn-sm">📖 Read Manifesto</summary>
+            <div class="manifesto-text-content">${escHtml(manifestoText)}</div>
+          </details>` : ''}
       </div>
     </div>
 
