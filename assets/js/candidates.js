@@ -112,7 +112,7 @@ async function initCandidatesPage() {
     const count = candidates.length;
 
     return `
-    <section class="position-section" id="${slug}" data-reveal>
+    <section class="position-section" id="${slug}">
       <div class="position-header">
         <span class="position-icon" aria-hidden="true">${icon}</span>
         <h2>${escHtml(pos)}</h2>
