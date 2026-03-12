@@ -46,41 +46,57 @@ async function fetchSheet(sheetKey) {
  * Handles quoted fields (including those containing commas or newlines).
  */
 function parseCSV(csv) {
-  const lines = csv.trim().split(/\r?\n/);
-  if (lines.length < 2) return [];
-
-  const headers = splitCSVLine(lines[0]).map(h => h.trim());
   const rows = [];
-
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-    const values = splitCSVLine(line);
-    const row = {};
-    headers.forEach((h, idx) => { row[h] = (values[idx] || '').trim(); });
-    rows.push(row);
-  }
-  return rows;
-}
-
-/** Splits a single CSV line respecting quoted fields. */
-function splitCSVLine(line) {
-  const result = [];
-  let current = '';
+  let currentRow = [];
+  let currentCell = '';
   let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i];
-    if (ch === '"') {
-      if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
-      else { inQuotes = !inQuotes; }
-    } else if (ch === ',' && !inQuotes) {
-      result.push(current); current = '';
+
+  for (let i = 0; i < csv.length; i++) {
+    const char = csv[i];
+    const nextChar = csv[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        currentCell += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      currentRow.push(currentCell);
+      currentCell = '';
+    } else if ((char === '\n' || (char === '\r' && nextChar === '\n')) && !inQuotes) {
+      if (char === '\r') i++;
+      currentRow.push(currentCell);
+      rows.push(currentRow);
+      currentRow = [];
+      currentCell = '';
     } else {
-      current += ch;
+      currentCell += char;
     }
   }
-  result.push(current);
-  return result;
+  
+  if (currentCell || currentRow.length > 0) {
+    currentRow.push(currentCell);
+    rows.push(currentRow);
+  }
+
+  if (rows.length < 2) return [];
+
+  const headers = rows[0].map(h => h.trim());
+  const parsedRows = [];
+
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i].length === 1 && rows[i][0].trim() === '') continue;
+    
+    const rowObj = {};
+    headers.forEach((h, idx) => {
+      rowObj[h] = (rows[i][idx] || '').trim();
+    });
+    parsedRows.push(rowObj);
+  }
+
+  return parsedRows;
 }
 
 /**
