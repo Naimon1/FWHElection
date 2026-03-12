@@ -7,7 +7,7 @@ import {
   fetchSheet, groupBy, sortCandidates,
   toYouTubeEmbed, toDriveImage, toDrivePDF,
   DEMO_CANDIDATES,
-} from './sheets.js';
+} from './sheets.js?v=2';
 
 /* Canonical position order as specified in the outline */
 const POSITION_ORDER = [

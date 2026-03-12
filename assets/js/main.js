@@ -12,7 +12,7 @@
 import {
   fetchSheet, toYouTubeEmbed,
   DEMO_DATES, DEMO_FAQ,
-} from './sheets.js';
+} from './sheets.js?v=2';
 
 /* =============================================
    NAVBAR
