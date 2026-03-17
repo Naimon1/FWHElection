@@ -131,9 +131,20 @@ function sortCandidates(candidates) {
 function toYouTubeEmbed(url) {
   if (!url) return '';
   url = url.trim();
+  
+  // Handle Google Drive links (convert view to preview for iframes)
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
+
   if (url.includes('youtube.com/embed/')) return url;
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
-  if (match) return `https://www.youtube.com/embed/${match[1]}?rel=0&modestbranding=1`;
+  
+  // Match standard, mobile, shorts, and youtu.be links
+  const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/|m\.youtube\.com\/(?:watch\?v=|shorts\/))([A-Za-z0-9_-]{11})/);
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?rel=0&modestbranding=1`;
+
+  // Prevent raw YouTube links from breaking iframes
+  if (url.includes('youtube.com') || url.includes('youtu.be')) return '';
+
   if (url.startsWith('http')) return url;
   return '';
 }

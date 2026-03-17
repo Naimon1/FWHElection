@@ -135,7 +135,8 @@ function buildCandidateCard(c, pos) {
   const fullName = `${c.FirstName || ''} ${c.LastName || ''}`.trim() || 'Candidate';
   const photoUrl = toDriveImage(c.PhotoURL);
   const pdfUrl   = toDrivePDF(c.ManifestoURL);
-  const videoUrl = toYouTubeEmbed(c.VideoURL);
+  const rawVideos = (c.VideoURL || '').split(/(?:,|\s+|\|)+/).filter(Boolean);
+  const videoUrls = rawVideos.map(toYouTubeEmbed).filter(Boolean);
   const manifestoText = c.ManifestoText || '';
 
   const keyPoints = [c.KeyPoint1, c.KeyPoint2, c.KeyPoint3].filter(Boolean);
@@ -174,12 +175,16 @@ function buildCandidateCard(c, pos) {
       </div>
     </div>
 
-    ${videoUrl ? `
-    <iframe class="candidate-video"
-      src="${escHtml(videoUrl)}"
-      title="Campaign video for ${escHtml(fullName)}"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen loading="lazy"></iframe>` : ''}
+    ${videoUrls.length ? `
+    <div class="candidate-videos">
+      ${videoUrls.map((vUrl, idx) => `
+        <iframe class="candidate-video"
+          src="${escHtml(vUrl)}"
+          title="Campaign video ${idx + 1} for ${escHtml(fullName)}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      `).join('')}
+    </div>` : ''}
 
     ${socialLinks.length ? `
     <div class="candidate-social" aria-label="Social links">

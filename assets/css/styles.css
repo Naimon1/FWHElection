@@ -478,6 +478,7 @@ p  { color: var(--text-muted); }
 }
 .candidate-keypoints li::before { content: '◆'; color: var(--maroon); font-size: 0.5rem; margin-top: 0.35rem; flex-shrink: 0; }
 .candidate-actions { display: flex; flex-direction: column; gap: 0.6rem; }
+.candidate-videos { display: flex; flex-direction: column; }
 .candidate-video { width: 100%; aspect-ratio: 16/9; border: none; border-top: 1px solid var(--border); }
 .candidate-social {
   display: flex; gap: 0.5rem; flex-wrap: wrap;
