@@ -134,7 +134,8 @@ async function initCandidatesPage() {
 function buildCandidateCard(c, pos) {
   const fullName = `${c.FirstName || ''} ${c.LastName || ''}`.trim() || 'Candidate';
   const photoUrl = toDriveImage(c.PhotoURL);
-  const pdfUrl   = toDrivePDF(c.ManifestoURL);
+  const rawPdfs = (c.ManifestoURL || '').split(/(?:,|\s+|\|)+/).filter(Boolean);
+  const pdfUrls = rawPdfs.map(toDrivePDF).filter(Boolean);
   const rawVideos = (c.VideoURL || '').split(/(?:,|\s+|\|)+/).filter(Boolean);
   const videoUrls = rawVideos.map(toYouTubeEmbed).filter(Boolean);
   const manifestoText = c.ManifestoText || '';
@@ -161,11 +162,11 @@ function buildCandidateCard(c, pos) {
       </ul>` : ''}
 
       <div class="candidate-actions">
-        ${pdfUrl ? `
-          <a href="${escHtml(pdfUrl)}" target="_blank" rel="noopener noreferrer"
+        ${pdfUrls.map((pUrl, idx) => `
+          <a href="${escHtml(pUrl)}" target="_blank" rel="noopener noreferrer"
              class="btn btn-maroon btn-sm">
-            📄 View PDF Manifesto
-          </a>` : ''}
+            📄 View PDF Manifesto ${pdfUrls.length > 1 ? idx + 1 : ''}
+          </a>`).join('')}
           
         ${manifestoText ? `
           <details class="manifesto-details">
